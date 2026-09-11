@@ -1,6 +1,8 @@
 include:
-  - board: xiao_ble
+  - board: xiao_ble//zmk
     shield: totem_left
-  - board: xiao_ble
+  - board: xiao_ble//zmk
     shield: totem_right
 # there is no settingsreset (needed) for the XIAO
+# NOTE: the board MUST carry the `//zmk` variant suffix. Plain `xiao_ble` builds
+# Zephyr's stock board definition, which has no ZMK defconfig -> no Bluetooth at all.
