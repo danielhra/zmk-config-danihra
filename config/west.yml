@@ -5,7 +5,15 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      # Pinned so a build is reproducible. Tracking `main` is what silently
+      # dropped Bluetooth from every build between Feb and Sep 2026: the board
+      # rename landed upstream and nothing here failed. Bump this deliberately,
+      # then verify the firmware before flashing.
+      #
+      # 5b51501f = fix(split): Use our managed queue for input report to avoid
+      # deadlock (#3110), 2026-09-26. Carries the Zephyr controller fix for
+      # split central lockups (10ba6d0cb).
+      revision: 5b51501fead672c41b5cfb396f3dafe0894bf4e9
       import: app/west.yml
   self:
     path: config
